@@ -21,4 +21,14 @@ public class AppTest
         assertEquals(exp, App.hasMinLength(str));
     }
 
+    @Test
+    public void containsDigit_returnsTrue_whenStringContainsDigit() {
+       assertTrue(App.containsDigit("abc1"));
+    }
+
+    @Test
+    public void containsDigit_returnsFalse_whenStringContainsNoDigit() {
+       assertFalse(App.containsDigit("abc"));
+    }
+
 }

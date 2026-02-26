@@ -11,4 +11,14 @@ public class App
         return pwd != null && !pwd.isBlank() && pwd.length() >= minLength;
     }
 
+    static boolean containsDigit(String pwd) {
+        char[] chars = pwd.toCharArray();
+
+        for(int i = 0; i < chars.length; i++) {
+            if(Character.isDigit(chars[i])) return true;
+        }
+
+        return false;
+    }
+
 }
