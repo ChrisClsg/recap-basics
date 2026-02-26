@@ -40,4 +40,21 @@ public class App
 
     return false;
   }
+
+  static boolean isNotACommonPassword(String pwd) {
+    String[] commonPasswords = {
+      "Abcdefgh1",
+      "Password1",
+      "Password2",
+      "Password3",
+      "Password4",
+      "Password5",
+    };
+
+    for(int i = 0; i < commonPasswords.length; i++) {
+      if(commonPasswords[i].equals(pwd)) return false;
+    }
+
+    return true;
+  }
 }

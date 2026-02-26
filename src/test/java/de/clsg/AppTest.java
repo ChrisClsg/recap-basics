@@ -50,4 +50,22 @@ public class AppTest
   public void containsLowerChar_returnsFalse_whenStringContainsNoLowerChar() {
     assertFalse(App.containsLowerChar("ABC"));
   }
+
+  @ParameterizedTest
+  @CsvSource({
+    "Abcdefgh1, false",
+    "Password1, false",
+    "Password2, false",
+    "Password3, false",
+    "Password4, false",
+    "Password5, false",
+  })
+  public void isNotACommonPassword_returnsFalse_whenStringIsBlacklisted(String str, boolean exp) {
+    assertEquals(exp, App.isNotACommonPassword(str));
+  }
+
+  @Test
+  public void isNotACommonPassword_returnsTrue_whenStringIsNotBlacklisted() {
+    assertTrue(App.isNotACommonPassword("ReallyAmazingPassword1"));
+  }
 }
