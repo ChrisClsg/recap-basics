@@ -30,4 +30,14 @@ public class App
 
         return false;
     }
+
+    static boolean containsLowerChar(String pwd) {
+        char[] chars = pwd.toCharArray();
+
+        for(int i = 0; i < chars.length; i++) {
+            if(Character.isLowerCase(chars[i])) return true;
+        }
+
+        return false;
+    }
 }

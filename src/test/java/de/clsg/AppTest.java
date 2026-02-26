@@ -40,4 +40,14 @@ public class AppTest
     public void containsUpperChar_returnsFalse_whenStringContainsNoUpperChar() {
        assertFalse(App.containsUpperChar("abc"));
     }
+
+    @Test
+    public void containsLowerChar_returnsTrue_whenStringContainsLowerChar() {
+       assertTrue(App.containsLowerChar("ABc"));
+    }
+
+    @Test
+    public void containsLowerChar_returnsFalse_whenStringContainsNoLowerChar() {
+       assertFalse(App.containsLowerChar("ABC"));
+    }
 }
