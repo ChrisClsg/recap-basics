@@ -21,4 +21,13 @@ public class App
         return false;
     }
 
+    static boolean containsUpperChar(String pwd) {
+        char[] chars = pwd.toCharArray();
+
+        for(int i = 0; i < chars.length; i++) {
+            if(Character.isUpperCase(chars[i])) return true;
+        }
+
+        return false;
+    }
 }

@@ -31,4 +31,13 @@ public class AppTest
        assertFalse(App.containsDigit("abc"));
     }
 
+    @Test
+    public void containsUpperChar_returnsTrue_whenStringContainsUpperChar() {
+       assertTrue(App.containsUpperChar("aBc"));
+    }
+
+    @Test
+    public void containsUpperChar_returnsFalse_whenStringContainsNoUpperChar() {
+       assertFalse(App.containsUpperChar("abc"));
+    }
 }
