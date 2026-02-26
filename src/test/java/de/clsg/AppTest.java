@@ -71,17 +71,25 @@ public class AppTest
 
   @ParameterizedTest
   @CsvSource({
-    "Abcdefgh1, false",
-    "Password1, false",
-    "Password2, false",
-    "abcdefg, false",
-    "abcdefg8, false",
-    "ABCDEFG8, false",
-    "Abcdefg8, true",
-    "Abcdefg8, true",
-    "abcDefg7, true",
+      "Abcde1, Must be at least 8 characters.",
+      "ABCDEFG8, Must contain at least one lower character.",
+      "abcdefg8, Must contain at least one upper character.",
+      "Abcdefgh, Must contain at least 1 digit.",
+      "Password1, Must not be too common."
+
   })
-  public void isPwdValid_validatesCorrectly(String str, boolean exp) {
-    assertEquals(exp, App.isPwdValid(str));
+  void validatePwd_returnsExpectedErrors_whenGivenInvalidPwd(String pwd, String exp) {
+    String[] expected = exp.isBlank()
+        ? new String[]{}
+        : exp.split(";");
+
+    String[] actual = App.validatePwd(pwd);
+
+    assertArrayEquals(expected, actual);
+  }
+
+  @Test
+  void validatePwd_returnsEmptyArray_whenGivenValidPwd() {
+    assertEquals(0, App.validatePwd("Abcdefghij1").length);
   }
 }

@@ -1,5 +1,6 @@
 package de.clsg;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App
@@ -14,10 +15,14 @@ public class App
     System.out.println("Please set your password:");
     String pwd = sc.nextLine();
 
-    if (isPwdValid(pwd)) {
+    String[] errors = validatePwd(pwd);
+
+    if (errors.length == 0) {
       System.out.println("Your password is valid.");
     } else {
-      System.out.println("Your password is invalid. Please try again.");
+      System.out.println("Your password is invalid.");
+      for (String e:errors) System.out.println("- " + e);
+      System.out.println("Please try again :)");
       askUserForPwd();
     }
 
@@ -78,11 +83,16 @@ public class App
     return true;
   }
 
-  static boolean isPwdValid(String pwd) {
-    return hasMinLength(pwd)
-      && containsDigit(pwd)
-      && containsLowerChar(pwd)
-      && containsUpperChar(pwd)
-      && isNotACommonPassword(pwd);
+  static String[] validatePwd(String pwd) {
+    String[] tmpErrors = new String[5];
+    int count = 0;
+
+    if (!hasMinLength(pwd)) tmpErrors[count++] = "Must be at least 8 characters.";
+    if (!containsDigit(pwd)) tmpErrors[count++] = "Must contain at least 1 digit.";
+    if (!containsLowerChar(pwd)) tmpErrors[count++] = "Must contain at least one lower character.";
+    if (!containsUpperChar(pwd)) tmpErrors[count++] = "Must contain at least one upper character.";
+    if (!isNotACommonPassword(pwd)) tmpErrors[count++] = "Must not be too common.";
+
+    return Arrays.copyOf(tmpErrors, count);
   }
 }
