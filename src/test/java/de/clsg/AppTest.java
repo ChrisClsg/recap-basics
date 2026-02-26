@@ -68,4 +68,20 @@ public class AppTest
   public void isNotACommonPassword_returnsTrue_whenStringIsNotBlacklisted() {
     assertTrue(App.isNotACommonPassword("ReallyAmazingPassword1"));
   }
+
+  @ParameterizedTest
+  @CsvSource({
+    "Abcdefgh1, false",
+    "Password1, false",
+    "Password2, false",
+    "abcdefg, false",
+    "abcdefg8, false",
+    "ABCDEFG8, false",
+    "Abcdefg8, true",
+    "Abcdefg8, true",
+    "abcDefg7, true",
+  })
+  public void isPwdValid_validatesCorrectly(String str, boolean exp) {
+    assertEquals(exp, App.isPwdValid(str));
+  }
 }

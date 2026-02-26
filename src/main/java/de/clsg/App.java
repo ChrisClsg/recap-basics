@@ -57,4 +57,12 @@ public class App
 
     return true;
   }
+
+  static boolean isPwdValid(String pwd) {
+    return hasMinLength(pwd)
+      && containsDigit(pwd)
+      && containsLowerChar(pwd)
+      && containsUpperChar(pwd)
+      && isNotACommonPassword(pwd);
+  }
 }
