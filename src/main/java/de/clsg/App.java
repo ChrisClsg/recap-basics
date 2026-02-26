@@ -1,8 +1,28 @@
 package de.clsg;
 
+import java.util.Scanner;
+
 public class App
 {
   public static void main( String[] args ) {
+    askUserForPwd();
+  }
+
+  static boolean askUserForPwd() {
+    Scanner sc = new Scanner(System.in);
+
+    System.out.println("Please set your password:");
+    String pwd = sc.nextLine();
+
+    if (isPwdValid(pwd)) {
+      System.out.println("Your password is valid.");
+    } else {
+      System.out.println("Your password is invalid. Please try again.");
+      askUserForPwd();
+    }
+
+    sc.close();
+    return true;
   }
 
   static boolean hasMinLength(String pwd) {
