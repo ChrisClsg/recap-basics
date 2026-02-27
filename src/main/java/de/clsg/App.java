@@ -83,6 +83,18 @@ public class App
     return true;
   }
 
+  static boolean containsSpecialChar(String pwd) {
+    char[] allowedSpecialChars = "!@#$%^&*()-_+=?.,;:".toCharArray();
+
+    for (char c : pwd.toCharArray()) {
+      for (char a : allowedSpecialChars) {
+        if (c == a) return true;
+      }
+    }
+
+    return false;
+  }
+
   static String[] validatePwd(String pwd) {
     String[] tmpErrors = new String[5];
     int count = 0;

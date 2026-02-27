@@ -71,6 +71,34 @@ public class AppTest
 
   @ParameterizedTest
   @CsvSource({
+    "abc, false",
+    "ab/, false",
+    "ab!, true",
+    "ab@, true",
+    "ab#, true",
+    "ab$, true",
+    "ab%, true",
+    "ab^, true",
+    "ab&, true",
+    "ab*, true",
+    "ab(, true",
+    "ab), true",
+    "ab-, true",
+    "ab_, true",
+    "ab+, true",
+    "ab=, true",
+    "ab?, true",
+    "ab., true",
+    "'ab,', true",
+    "ab;, true",
+    "ab:, true",
+  })
+  public void containsSpecialChar_onlyReturnsTrue_whenStringContainsAllowedSpecialChar(String str, boolean exp) {
+    assertEquals(exp, App.containsSpecialChar(str));
+  }
+
+  @ParameterizedTest
+  @CsvSource({
       "Abcde1, Must be at least 8 characters.",
       "ABCDEFG8, Must contain at least one lower character.",
       "abcdefg8, Must contain at least one upper character.",
