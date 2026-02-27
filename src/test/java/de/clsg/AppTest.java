@@ -149,5 +149,34 @@ public class AppTest
 
     assertTrue(allowedChars.contains(String.valueOf(c)));
   }
+
+  @Test
+  void generatePwd_throwsArgException_whenGivenNumBelow8() {
+    assertThrows(IllegalArgumentException.class, () -> App.generatePwd(7));
+  }
+
+  @ParameterizedTest
+  @CsvSource({
+    "8",
+    "16",
+    "20",
+    "40",
+    "72",
+  })
+  void generatePwd_returnsPwd_withGivenLength(int num) {
+    assertEquals(num, App.generatePwd(num).length());
+  }
+
+  @ParameterizedTest
+  @CsvSource({
+    "8",
+    "16",
+    "20",
+    "40",
+    "72",
+  })
+  void generatePwd_returnsAValidPwd(int n) {
+    assertEquals(0, App.validatePwd(App.generatePwd(n)).length);
+  }
 }
 

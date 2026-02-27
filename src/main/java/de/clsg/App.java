@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 public class App
 {
   public static void main( String[] args ) {
+    System.out.println("Random example password: " + generatePwd(72));
     askUserForPwd();
   }
 
@@ -136,5 +137,40 @@ public class App
     SecureRandom sr = new SecureRandom();
 
     return chars[sr.nextInt(chars.length)];
+  }
+
+  static String generatePwd(int n) {
+    if(n < 8) throw new IllegalArgumentException("Password has to be at least 8 characters long");
+
+    SecureRandom sr = new SecureRandom();
+    char[] pwd = new char[n];
+
+    pwd[0] = getRandomLowerChar();
+    pwd[1] = getRandomUpperChar();
+    pwd[2] = getRandomDigit();
+    pwd[3] = getRandomSpecialChar();
+
+    for (int i = 4; i < n; i++) {
+      int rn = sr.nextInt(4);
+
+      char newChar = switch(rn) {
+        case 0 -> getRandomLowerChar();
+        case 1 -> getRandomUpperChar();
+        case 2 -> getRandomDigit();
+        case 3 -> getRandomSpecialChar();
+        default -> throw new IllegalStateException();
+      };
+
+      pwd[i] = newChar;
+    }
+
+    for (int i = pwd.length - 1; i > 0; i--) {
+      int j = sr.nextInt(i + 1);
+      char tmp = pwd[i];
+      pwd[i] = pwd[j];
+      pwd[j] = tmp;
+    }
+
+    return new String(pwd);
   }
 }
