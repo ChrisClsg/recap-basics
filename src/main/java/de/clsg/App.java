@@ -68,12 +68,12 @@ public class App
 
   static boolean isNotACommonPassword(String pwd) {
     String[] commonPasswords = {
-      "Abcdefgh1",
-      "Password1",
-      "Password2",
-      "Password3",
-      "Password4",
-      "Password5",
+      "Abcdefgh1!",
+      "Password1!",
+      "Password2!",
+      "Password3!",
+      "Password4!",
+      "Password5!",
     };
 
     for(int i = 0; i < commonPasswords.length; i++) {
@@ -96,7 +96,7 @@ public class App
   }
 
   static String[] validatePwd(String pwd) {
-    String[] tmpErrors = new String[5];
+    String[] tmpErrors = new String[6];
     int count = 0;
 
     if (!hasMinLength(pwd)) tmpErrors[count++] = "Must be at least 8 characters.";
@@ -104,6 +104,7 @@ public class App
     if (!containsLowerChar(pwd)) tmpErrors[count++] = "Must contain at least one lower character.";
     if (!containsUpperChar(pwd)) tmpErrors[count++] = "Must contain at least one upper character.";
     if (!isNotACommonPassword(pwd)) tmpErrors[count++] = "Must not be too common.";
+    if (!containsSpecialChar(pwd)) tmpErrors[count++] = "Must contain at least one special character [\\!@#$%^&*()-_+=?.,;:\\].";
 
     return Arrays.copyOf(tmpErrors, count);
   }

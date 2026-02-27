@@ -7,7 +7,8 @@ This project implements a basic password validation based on a policy for valid 
 The password must:
 - have at least 8 characters
 - have at least one digit (0–9)
-- include both uppercase and lowercase letters
+- have at least one of the following special characters: !@#$%^&*()-_+=?.,;:
+- have at least one uppercase **and** one lowercase letter
 - not be on a list of common/weak passwords
 
 ## Build / Run / Tests
