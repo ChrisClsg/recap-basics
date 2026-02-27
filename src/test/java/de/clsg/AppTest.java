@@ -9,14 +9,14 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class AppTest
 {
   @ParameterizedTest
-  @CsvSource({
-    "null, false",
+  @CsvSource(value = {
+    "<null>, false",
     "         , false",
     "abc, false",
     "abcdefg, false",
     "abcdefgh, true",
     "abcdefghabcdefghabcdefghabcdefgh, true",
-  })
+  }, nullValues = "<null>")
   public void hasMinLength_returnsOnlyTrue_whenLengthEqualOrGrater8(String str, boolean exp) {
     assertEquals(exp, App.hasMinLength(str));
   }
