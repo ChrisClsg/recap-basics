@@ -2,6 +2,7 @@ package de.clsg;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.security.SecureRandom;
 
 public class App
 {
@@ -107,5 +108,33 @@ public class App
     if (!containsSpecialChar(pwd)) tmpErrors[count++] = "Must contain at least one special character [\\!@#$%^&*()-_+=?.,;:\\].";
 
     return Arrays.copyOf(tmpErrors, count);
+  }
+
+  static char getRandomLowerChar() {
+    char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    SecureRandom sr = new SecureRandom();
+
+    return chars[sr.nextInt(chars.length)];
+  }
+
+  static char getRandomUpperChar() {
+    char[] chars = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
+    SecureRandom sr = new SecureRandom();
+
+    return chars[sr.nextInt(chars.length)];
+  }
+
+  static char getRandomDigit() {
+    char[] chars = "0123456789".toCharArray();
+    SecureRandom sr = new SecureRandom();
+
+    return chars[sr.nextInt(chars.length)];
+  }
+
+  static char getRandomSpecialChar() {
+    char[] chars = "!@#$%^&*()-_+=?.,;:".toCharArray();
+    SecureRandom sr = new SecureRandom();
+
+    return chars[sr.nextInt(chars.length)];
   }
 }

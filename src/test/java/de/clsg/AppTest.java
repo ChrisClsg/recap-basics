@@ -120,4 +120,34 @@ public class AppTest
   void validatePwd_returnsEmptyArray_whenGivenValidPwd() {
     assertEquals(0, App.validatePwd("Abcdefghij1!").length);
   }
+
+  @Test
+  void getRandomLowerChar_returnsOneLowerCaseChar() {
+    char c = App.getRandomLowerChar();
+
+    assertTrue(c >= 'a' && c <= 'z');
+  }
+
+  @Test
+  void getRandomLowerChar_returnsOneUpperCaseChar() {
+    char c = App.getRandomUpperChar();
+
+    assertTrue(c >= 'A' && c <= 'Z');
+  }
+
+  @Test
+  void getRandomDigit_returnsOneDigit() {
+    char c = App.getRandomDigit();
+
+    assertTrue(c >= '0' && c <= '9');
+  }
+
+  @Test
+  void getRandomSpecialChar_returnsOneAllowedSpecialChar() {
+    String allowedChars = "!@#$%^&*()-_+=?.,;:";
+    char c = App.getRandomSpecialChar();
+
+    assertTrue(allowedChars.contains(String.valueOf(c)));
+  }
 }
+
