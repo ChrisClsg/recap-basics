@@ -53,12 +53,12 @@ public class AppTest
 
   @ParameterizedTest
   @CsvSource({
-    "Abcdefgh1, false",
-    "Password1, false",
-    "Password2, false",
-    "Password3, false",
-    "Password4, false",
-    "Password5, false",
+    "Abcdefgh1!, false",
+    "Password1!, false",
+    "Password2!, false",
+    "Password3!, false",
+    "Password4!, false",
+    "Password5!, false",
   })
   public void isNotACommonPassword_returnsFalse_whenStringIsBlacklisted(String str, boolean exp) {
     assertEquals(exp, App.isNotACommonPassword(str));
@@ -99,17 +99,17 @@ public class AppTest
 
   @ParameterizedTest
   @CsvSource({
-      "Abcde1, Must be at least 8 characters.",
-      "ABCDEFG8, Must contain at least one lower character.",
-      "abcdefg8, Must contain at least one upper character.",
-      "Abcdefgh, Must contain at least 1 digit.",
-      "Password1, Must not be too common."
-
+      "A+cde1, Must be at least 8 characters.",
+      "A+CDEFG8, Must contain at least one lower character.",
+      "a+cdefg8, Must contain at least one upper character.",
+      "A+cdefgh, Must contain at least 1 digit.",
+      "Password1!, Must not be too common.",
+      "Password1, 'Must contain at least one special character [\\!@#$%^&*()-_+=?.,;:\\].'",
   })
-  void validatePwd_returnsExpectedErrors_whenGivenInvalidPwd(String pwd, String exp) {
+  void validatePwd_returnsExpectedError_whenGivenPwdWithOneError(String pwd, String exp) {
     String[] expected = exp.isBlank()
         ? new String[]{}
-        : exp.split(";");
+        : new String[]{exp};
 
     String[] actual = App.validatePwd(pwd);
 
@@ -118,6 +118,6 @@ public class AppTest
 
   @Test
   void validatePwd_returnsEmptyArray_whenGivenValidPwd() {
-    assertEquals(0, App.validatePwd("Abcdefghij1").length);
+    assertEquals(0, App.validatePwd("Abcdefghij1!").length);
   }
 }
